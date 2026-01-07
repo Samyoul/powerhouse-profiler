@@ -125,7 +125,7 @@ Profiles any TypeScript script in the `./scripts` directory.
 **Usage:**
 ```bash
 # Profile a script
-./scripts/profile-ts-script.sh create-documents-with-ops.ts 10 5
+./scripts/profile-ts-script.sh docs-create-with-ops.ts 10 5
 
 # Profile with arguments
 ./scripts/profile-ts-script.sh verify-operations.ts --driveId powerhouse --verbose
@@ -139,7 +139,7 @@ Profiles any TypeScript script in the `./scripts` directory.
 
 ## Document Management Scripts
 
-### `create-documents-with-ops.ts`
+### `docs-create-with-ops.ts`
 
 Creates N documents and adds n operations to each document.
 
@@ -151,10 +151,10 @@ Creates N documents and adds n operations to each document.
 **Usage:**
 ```bash
 # Create 10 documents with 5 operations each
-tsx scripts/create-documents-with-ops.ts 10 5
+tsx scripts/docs-create-with-ops.ts 10 5
 
 # Specify drive and endpoint
-tsx scripts/create-documents-with-ops.ts 100 20 \
+tsx scripts/docs-create-with-ops.ts 100 20 \
   --driveId powerhouse \
   --endpoint http://localhost:4001/graphql
 ```
@@ -171,7 +171,7 @@ tsx scripts/create-documents-with-ops.ts 100 20 \
 
 ---
 
-### `list-documents.ts`
+### `docs-list.ts`
 
 Lists and counts documents in a drive.
 
@@ -183,10 +183,10 @@ Lists and counts documents in a drive.
 **Usage:**
 ```bash
 # List all documents
-tsx scripts/list-documents.ts --driveId powerhouse
+tsx scripts/docs-list.ts --driveId powerhouse
 
 # Custom endpoint
-tsx scripts/list-documents.ts \
+tsx scripts/docs-list.ts \
   --endpoint http://localhost:4001/graphql \
   --driveId powerhouse
 ```
@@ -199,7 +199,7 @@ tsx scripts/list-documents.ts \
 
 ---
 
-### `verify-operations.ts`
+### `docs-verify-operations.ts`
 
 Verifies that operations were successfully applied to documents.
 
@@ -212,20 +212,20 @@ Verifies that operations were successfully applied to documents.
 **Usage:**
 ```bash
 # Basic verification
-tsx scripts/verify-operations.ts --driveId powerhouse
+tsx scripts/docs-verify-operations.ts --driveId powerhouse
 
 # With expected operation count
-tsx scripts/verify-operations.ts \
+tsx scripts/docs-verify-operations.ts \
   --driveId powerhouse \
   --expectedOps 10
 
 # Verbose mode with detailed info
-tsx scripts/verify-operations.ts \
+tsx scripts/docs-verify-operations.ts \
   --driveId powerhouse \
   --verbose
 
 # Custom batch size for parallel fetching
-tsx scripts/verify-operations.ts \
+tsx scripts/docs-verify-operations.ts \
   --driveId powerhouse \
   --batchSize 50
 ```
@@ -246,7 +246,7 @@ tsx scripts/verify-operations.ts \
 
 ---
 
-### `delete-docs-simple.ts`
+### `docs-delete-simple.ts`
 
 Deletes documents using the MCP HTTP API.
 
@@ -258,10 +258,10 @@ Deletes documents using the MCP HTTP API.
 **Usage:**
 ```bash
 # Delete all documents (requires confirmation)
-tsx scripts/delete-docs-simple.ts --driveId powerhouse
+tsx scripts/docs-delete-simple.ts --driveId powerhouse
 
 # Skip confirmation prompt
-tsx scripts/delete-docs-simple.ts --driveId powerhouse --confirm
+tsx scripts/docs-delete-simple.ts --driveId powerhouse --confirm
 ```
 
 **Options:**
@@ -288,10 +288,10 @@ tsx scripts/add-npm-scripts.ts
 ```
 
 **What it adds:**
-- `create-docs`: Create documents with operations
-- `delete-docs-simple`: Delete documents using MCP
-- `list-docs`: List documents in a drive
-- `verify-ops`: Verify operations were applied to documents
+- `docs-create`: Create documents with operations
+- `docs-delete-simple`: Delete documents using MCP
+- `docs-list`: List documents in a drive
+- `docs-verify-ops`: Verify operations were applied to documents
 - `profile-ts`: Profile TypeScript scripts
 - `analyze-profile`: Analyze CPU profile files
 
@@ -329,22 +329,22 @@ tsx scripts/add-npm-scripts.ts
 
 1. **Create test documents:**
    ```bash
-   tsx scripts/create-documents-with-ops.ts 100 20 --driveId powerhouse
+   tsx scripts/docs-create-with-ops.ts 100 20 --driveId powerhouse
    ```
 
 2. **Verify operations were applied:**
    ```bash
-   tsx scripts/verify-operations.ts --driveId powerhouse --expectedOps 20 --verbose
+   tsx scripts/docs-verify-operations.ts --driveId powerhouse --expectedOps 20 --verbose
    ```
 
 3. **List documents:**
    ```bash
-   tsx scripts/list-documents.ts --driveId powerhouse
+   tsx scripts/docs-list.ts --driveId powerhouse
    ```
 
 4. **Clean up:**
    ```bash
-   tsx scripts/delete-docs-simple.ts --driveId powerhouse --confirm
+   tsx scripts/docs-delete-simple.ts --driveId powerhouse --confirm
    ```
 
 ### Profile File Locations

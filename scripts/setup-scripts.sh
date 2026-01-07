@@ -90,9 +90,10 @@ echo -e "${GREEN}Setup Complete!${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo
 echo "You can now use the npm scripts:"
-echo "  npm run create-docs"
-echo "  npm run list-docs"
-echo "  npm run verify-ops"
+echo "  npm run docs-create"
+echo "  npm run docs-delete"
+echo "  npm run docs-list"
+echo "  npm run docs-verify-ops"
 echo "  npm run profile-ts"
 echo "  npm run analyze-profile"
 echo

@@ -4,10 +4,10 @@
  * Usage: tsx scripts/add-npm-scripts.ts
  *
  * This script adds the following scripts to package.json:
- * - create-docs: Create documents with operations
- * - delete-docs-simple: Delete documents using MCP
- * - list-docs: List documents in a drive
- * - verify-ops: Verify operations were applied to documents
+ * - docs-create: Create documents with operations
+ * - docs-delete: Delete documents using MCP
+ * - docs-list: List documents in a drive
+ * - docs-verify-ops: Verify operations were applied to documents
  * - profile-ts: Profile TypeScript scripts
  * - analyze-profile: Analyze CPU profile files
  */
@@ -20,10 +20,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const SCRIPTS_TO_ADD = {
-  "create-docs": "tsx scripts/create-documents-with-ops.ts",
-  "delete-docs-simple": "tsx scripts/delete-docs-simple.ts",
-  "list-docs": "tsx scripts/list-documents.ts",
-  "verify-ops": "tsx scripts/verify-operations.ts",
+  "docs-create": "tsx scripts/docs-create-with-ops.ts",
+  "docs-delete": "tsx scripts/docs-delete-simple.ts",
+  "docs-list": "tsx scripts/docs-list.ts",
+  "docs-verify-ops": "tsx scripts/docs-verify-operations.ts",
   "profile-ts": "./scripts/profile-ts-script.sh",
   "analyze-profile": "node scripts/analyze-cpu-profile.js",
 };
