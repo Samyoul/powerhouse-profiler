@@ -128,7 +128,7 @@ Profiles any TypeScript script in the `./scripts` directory.
 ./scripts/profile-ts-script.sh docs-create-with-ops.ts 10 5
 
 # Profile with arguments
-./scripts/profile-ts-script.sh verify-operations.ts --driveId powerhouse --verbose
+./scripts/profile-ts-script.sh verify-operations.ts --verbose
 ```
 
 **Output:**
@@ -155,8 +155,16 @@ tsx scripts/docs-create-with-ops.ts 10 5
 
 # Specify drive and endpoint
 tsx scripts/docs-create-with-ops.ts 100 20 \
-  --driveId powerhouse \
   --endpoint http://localhost:4001/graphql
+```
+
+Or using npm script (after running `add-npm-scripts.ts`):
+
+```bash
+pnpm docs-create 10 5
+
+# Specify drive and endpoint
+pnpm docs-create 100 20 --driveId my-drive --endpoint http://localhost:4001/graphql
 ```
 
 **Features:**
@@ -182,13 +190,27 @@ Lists and counts documents in a drive.
 
 **Usage:**
 ```bash
-# List all documents
-tsx scripts/docs-list.ts --driveId powerhouse
+# List all documents (uses default driveId: powerhouse)
+tsx scripts/docs-list.ts
 
 # Custom endpoint
 tsx scripts/docs-list.ts \
-  --endpoint http://localhost:4001/graphql \
-  --driveId powerhouse
+  --endpoint http://localhost:4001/graphql
+
+# Custom driveId
+tsx scripts/docs-list.ts --driveId my-drive
+```
+
+Or using npm script (after running `add-npm-scripts.ts`):
+
+```bash
+pnpm docs-list
+
+# Custom endpoint
+pnpm docs-list --endpoint http://localhost:4001/graphql
+
+# Custom driveId
+pnpm docs-list --driveId my-drive
 ```
 
 **Options:**
@@ -211,23 +233,39 @@ Verifies that operations were successfully applied to documents.
 
 **Usage:**
 ```bash
-# Basic verification
-tsx scripts/docs-verify-operations.ts --driveId powerhouse
+# Basic verification (uses default driveId: powerhouse)
+tsx scripts/docs-verify-operations.ts
 
 # With expected operation count
-tsx scripts/docs-verify-operations.ts \
-  --driveId powerhouse \
-  --expectedOps 10
+tsx scripts/docs-verify-operations.ts --expectedOps 10
 
 # Verbose mode with detailed info
-tsx scripts/docs-verify-operations.ts \
-  --driveId powerhouse \
-  --verbose
+tsx scripts/docs-verify-operations.ts --verbose
 
 # Custom batch size for parallel fetching
-tsx scripts/docs-verify-operations.ts \
-  --driveId powerhouse \
-  --batchSize 50
+tsx scripts/docs-verify-operations.ts --batchSize 50
+
+# Custom driveId
+tsx scripts/docs-verify-operations.ts --driveId my-drive --expectedOps 10
+```
+
+Or using npm script (after running `add-npm-scripts.ts`):
+
+```bash
+# Basic verification (uses default driveId: powerhouse)
+pnpm docs-verify-ops
+
+# With expected operation count
+pnpm docs-verify-ops --expectedOps 10
+
+# Verbose mode with detailed info
+pnpm docs-verify-ops --verbose
+
+# Custom batch size for parallel fetching
+pnpm docs-verify-ops --batchSize 50
+
+# Custom driveId
+pnpm docs-verify-ops --driveId my-drive --expectedOps 10
 ```
 
 **Options:**
@@ -257,11 +295,27 @@ Deletes documents using the MCP HTTP API.
 
 **Usage:**
 ```bash
-# Delete all documents (requires confirmation)
-tsx scripts/docs-delete-simple.ts --driveId powerhouse
+# Delete all documents (requires confirmation, uses default driveId: powerhouse)
+tsx scripts/docs-delete-simple.ts
 
 # Skip confirmation prompt
-tsx scripts/docs-delete-simple.ts --driveId powerhouse --confirm
+tsx scripts/docs-delete-simple.ts --confirm
+
+# Custom driveId
+tsx scripts/docs-delete-simple.ts --driveId my-drive --confirm
+```
+
+Or using npm script (after running `add-npm-scripts.ts`):
+
+```bash
+# Delete all documents (requires confirmation, uses default driveId: powerhouse)
+pnpm docs-delete
+
+# Skip confirmation prompt
+pnpm docs-delete --confirm
+
+# Custom driveId
+pnpm docs-delete --driveId my-drive --confirm
 ```
 
 **Options:**
@@ -285,6 +339,9 @@ Adds performance testing npm scripts to `package.json`.
 **Usage:**
 ```bash
 tsx scripts/add-npm-scripts.ts
+
+# Or using npm script (if already added):
+pnpm add-npm-scripts
 ```
 
 **What it adds:**
@@ -310,6 +367,7 @@ tsx scripts/add-npm-scripts.ts
 1. **Profile switchboard:**
    ```bash
    ./scripts/profile-switchboard.sh
+
    # Or for V8 profiling:
    ./scripts/profile-ph-switchboard.sh
    ```
@@ -322,29 +380,44 @@ tsx scripts/add-npm-scripts.ts
 
 3. **Profile a TypeScript script:**
    ```bash
-   ./scripts/profile-ts-script.sh verify-operations.ts --driveId powerhouse
+   ./scripts/profile-ts-script.sh docs-verify-operations.ts --verbose
+   
+   # Or using npm script:
+   pnpm profile-ts docs-verify-operations.ts --verbose
    ```
 
 ### Document Testing Workflow
 
 1. **Create test documents:**
    ```bash
-   tsx scripts/docs-create-with-ops.ts 100 20 --driveId powerhouse
+   tsx scripts/docs-create-with-ops.ts 100 20
+   
+   # Or:
+   pnpm docs-create 100 20
    ```
 
 2. **Verify operations were applied:**
    ```bash
-   tsx scripts/docs-verify-operations.ts --driveId powerhouse --expectedOps 20 --verbose
+   tsx scripts/docs-verify-operations.ts --expectedOps 20 --verbose
+   
+   # Or:
+   pnpm docs-verify-ops --expectedOps 20 --verbose
    ```
 
 3. **List documents:**
    ```bash
-   tsx scripts/docs-list.ts --driveId powerhouse
+   tsx scripts/docs-list.ts
+   
+   # Or:
+   pnpm docs-list
    ```
 
 4. **Clean up:**
    ```bash
-   tsx scripts/docs-delete-simple.ts --driveId powerhouse --confirm
+   tsx scripts/docs-delete-simple.ts --confirm
+   
+   # Or:
+   pnpm docs-delete --confirm
    ```
 
 ### Profile File Locations
